@@ -7,6 +7,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,6 +24,7 @@ import br.com.treina.recife.sgp.api.service.ProjetoService;
 import br.com.treina.recife.sgp.api.service.UsuarioService;
 import jakarta.validation.Valid;
 
+@CrossOrigin(origins = "http://localhost:5173")
 @RestController
 @RequestMapping("/api/projetos")
 public class ProjetoController {
@@ -36,7 +38,7 @@ public class ProjetoController {
     @PostMapping
     public ResponseEntity<Projeto> cadastrar(@Valid @RequestBody DadosProjetoDTO projeto) {
         return ResponseEntity.status(HttpStatus.CREATED)
-                             .body(projetoService.cadastrarProjeto(projeto));
+                             .body(projetoService.salvar(projeto));
     }
 
     @GetMapping

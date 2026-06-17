@@ -26,23 +26,20 @@ public class Projeto {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
     private String nome;
 
-    @Column(columnDefinition = "TEXT")
     private String descricao;
 
-    @Column(nullable = false)
     private LocalDate dataInicio;
- 
-    private LocalDate dataFinal;
- 
-    @Column(nullable = false)
+
+    private LocalDate dataConclusao;
+
     @Enumerated(EnumType.STRING)
     private StatusProjeto status;
 
+
     @ManyToOne
-    @JoinColumn(nullable = false, name = "usuario_resp_id")
+    @JoinColumn(name = "usuario_resp_id")
     private Usuario responsavel;
 
 }

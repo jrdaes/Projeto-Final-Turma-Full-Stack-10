@@ -24,7 +24,8 @@ public class Usuario {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;    // BIGINT PRIMARY KEY AUTO_INCREMENT
+    private Long 
+    id;    // BIGINT PRIMARY KEY AUTO_INCREMENT
 
     // VARCHAR(50) NOT NULL
     @Column(nullable = false, length = 50)

@@ -13,7 +13,6 @@ import br.com.treina.recife.sgp.api.exception.RecursoNaoEncontradoException;
 import br.com.treina.recife.sgp.api.exception.RegraDeNegocioException;
 import br.com.treina.recife.sgp.api.model.Usuario;
 import br.com.treina.recife.sgp.api.repository.ProjetoRepository;
-import br.com.treina.recife.sgp.api.repository.TarefaRepository;
 import br.com.treina.recife.sgp.api.repository.UsuarioRepository;
 
  @Service
@@ -21,9 +20,6 @@ public class UsuarioService {
 
     @Autowired
     private UsuarioRepository usuarioRepository;
-
-    @Autowired
-    private TarefaRepository tarefaRepository;
 
     @Autowired
     private ProjetoRepository projetoRepository;

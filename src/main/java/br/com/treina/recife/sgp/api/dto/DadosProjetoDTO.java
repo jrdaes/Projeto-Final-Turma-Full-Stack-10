@@ -5,7 +5,6 @@ import java.time.LocalDate;
 import br.com.treina.recife.sgp.api.enums.StatusProjeto;
 import br.com.treina.recife.sgp.api.model.Projeto;
 import br.com.treina.recife.sgp.api.model.Usuario;
-import br.com.treina.recife.sgp.api.repository.UsuarioRepository;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 

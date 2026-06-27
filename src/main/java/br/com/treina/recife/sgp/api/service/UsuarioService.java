@@ -2,23 +2,19 @@ package br.com.treina.recife.sgp.api.service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
-import org.jspecify.annotations.Nullable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import br.com.treina.recife.sgp.api.dto.DadosUsuarioDTO;
 import br.com.treina.recife.sgp.api.dto.UsuarioDTO;
 import br.com.treina.recife.sgp.api.exception.RecursoNaoEncontradoException;
 import br.com.treina.recife.sgp.api.exception.RegraDeNegocioException;
 import br.com.treina.recife.sgp.api.model.Usuario;
+import br.com.treina.recife.sgp.api.repository.ProjetoRepository;
 import br.com.treina.recife.sgp.api.repository.TarefaRepository;
 import br.com.treina.recife.sgp.api.repository.UsuarioRepository;
-import jakarta.validation.Valid;
-
-import org.springframework.transaction.annotation.Transactional;
-import br.com.treina.recife.sgp.api.repository.ProjetoRepository;
 
  @Service
 public class UsuarioService {

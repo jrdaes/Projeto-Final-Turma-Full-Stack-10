@@ -3,7 +3,6 @@ package br.com.treina.recife.sgp.api.model;
 import java.time.LocalDate;
 
 import br.com.treina.recife.sgp.api.enums.StatusProjeto;
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;

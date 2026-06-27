@@ -10,19 +10,12 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 public record DadosUsuarioDTO(
-    @NotBlank @Size(min = 3, max = 50)
-    String nome,
-    @NotBlank @Size(max = 11)
-    String cpf,
-    @NotBlank @Email
-    String email,
-    @NotBlank @Size(max = 19)
-    String senha,
-    @NotNull
-    LocalDate dataNascimento,
-    @NotNull
-    StatusUsuario status
-) {
+        @NotBlank @Size(min = 3, max = 50) String nome,
+        @NotBlank @Size(max = 11) String cpf,
+        @NotBlank @Email String email,
+        @Size(max = 19) String senha,
+        @NotNull LocalDate dataNascimento,
+        @NotNull StatusUsuario status) {
 
     public Usuario toModel() {
         Usuario usuario = new Usuario();
@@ -36,5 +29,5 @@ public record DadosUsuarioDTO(
 
         return usuario;
     }
-    
+
 }

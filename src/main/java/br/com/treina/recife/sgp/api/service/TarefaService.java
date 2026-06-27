@@ -3,6 +3,7 @@ package br.com.treina.recife.sgp.api.service;
 import java.util.List;
 import java.util.Optional;
 
+import org.jspecify.annotations.Nullable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -44,8 +45,8 @@ public class TarefaService {
     public Tarefa atualizarTarefa(Long id, DadosTarefaDTO dto) {
 
         Tarefa tarefa = tarefaRepository.findById(id)
-            .orElseThrow(() -> new ResponseStatusException(
-                HttpStatus.NOT_FOUND, "Tarefa não encontrada"));
+                .orElseThrow(() -> new ResponseStatusException(
+                        HttpStatus.NOT_FOUND, "Tarefa não encontrada"));
 
         tarefa = montarTarefa(dto, tarefa);
 
@@ -59,12 +60,12 @@ public class TarefaService {
     private Tarefa montarTarefa(DadosTarefaDTO dto, Tarefa tarefa) {
 
         Usuario usuario = usuarioRepository.findById(dto.usuarioId())
-            .orElseThrow(() -> new ResponseStatusException(
-                HttpStatus.NOT_FOUND, "Usuário não encontrado"));
+                .orElseThrow(() -> new ResponseStatusException(
+                        HttpStatus.NOT_FOUND, "Usuário não encontrado"));
 
         Projeto projeto = projetoRepository.findById(dto.projetoId())
-            .orElseThrow(() -> new ResponseStatusException(
-                HttpStatus.NOT_FOUND, "Projeto não encontrado"));
+                .orElseThrow(() -> new ResponseStatusException(
+                        HttpStatus.NOT_FOUND, "Projeto não encontrado"));
 
         tarefa.setTitulo(dto.titulo());
         tarefa.setDescricao(dto.descricao());
@@ -76,5 +77,11 @@ public class TarefaService {
         tarefa.setProjeto(projeto);
 
         return tarefa;
+    }
+
+    public Tarefa buscarPorId(Long id) {
+        return tarefaRepository.findById(id)
+                .orElseThrow(() -> new ResponseStatusException(
+                        HttpStatus.NOT_FOUND, "Tarefa não encontrada"));
     }
 }

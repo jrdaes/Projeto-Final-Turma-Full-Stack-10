@@ -31,28 +31,28 @@ public class ProjetoService {
 
     public Projeto salvar(DadosProjetoDTO dto) {
 
-    Usuario usuario = usuarioRepository.findById(dto.responsavelId())
-        .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
+        Usuario usuario = usuarioRepository.findById(dto.responsavelId())
+                .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
 
-    Projeto projeto = new Projeto();
+        Projeto projeto = new Projeto();
 
-    projeto.setNome(dto.nome());
-    projeto.setDescricao(dto.descricao());
-    projeto.setDataInicio(dto.dataInicio());
-    projeto.setDataConclusao(dto.dataConclusao());
-    projeto.setStatus(dto.status());
-    projeto.setResponsavel(usuario);
+        projeto.setNome(dto.nome());
+        projeto.setDescricao(dto.descricao());
+        projeto.setDataInicio(dto.dataInicio());
+        projeto.setDataConclusao(dto.dataConclusao());
+        projeto.setStatus(dto.status());
+        projeto.setResponsavel(usuario);
 
-    return projetoRepository.save(projeto);
-}
+        return projetoRepository.save(projeto);
+    }
 
     public Projeto atualizarProjeto(Long id, DadosProjetoDTO dto) {
 
         Projeto projeto = projetoRepository.findById(id)
-            .orElseThrow(() -> new RuntimeException("Projeto não encontrado"));
+                .orElseThrow(() -> new RuntimeException("Projeto não encontrado"));
 
         Usuario responsavel = usuarioRepository.findById(dto.responsavelId())
-            .orElseThrow(() -> new RuntimeException("Responsável não encontrado"));
+                .orElseThrow(() -> new RuntimeException("Responsável não encontrado"));
 
         projeto.setNome(dto.nome());
         projeto.setDescricao(dto.descricao());

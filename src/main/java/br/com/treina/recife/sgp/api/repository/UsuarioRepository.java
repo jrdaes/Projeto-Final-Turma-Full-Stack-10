@@ -10,21 +10,12 @@ import br.com.treina.recife.sgp.api.enums.StatusUsuario;
 import br.com.treina.recife.sgp.api.model.Usuario;
 import java.time.LocalDate;
 
-
 @Repository
 public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
-
-    Optional<Usuario> findByEmail(String email);
 
     Optional<Usuario> findByCpf(String cpf);
 
     Optional<Usuario> findByEmailAndSenha(String email, String senha);
 
-    List<Usuario> findByStatus(StatusUsuario status);
-
-    List<Usuario> findByDataNascimentoBetween(LocalDate dataInicio, LocalDate dataFim);
-
-    // *andre -> Alexandre, Andreza, Andrea, Andressa, Andrelina, Andrezza
-    List<Usuario> findByNomeContainingIgnoreCase(String seqCaracteres);
-
+    boolean existsById(Long id); // CORRETO
 }

@@ -15,5 +15,7 @@ public interface TarefaRepository extends JpaRepository<Tarefa, Long> {
     List<Tarefa> findByProjeto_Id(Long id);
 
     List<Tarefa> findByProjeto_IdAndUsuario_Id(Long idProjeto, Long idUsuario);
-    
+
+    boolean existsByUsuarioId(Long usuarioId);
+
 }

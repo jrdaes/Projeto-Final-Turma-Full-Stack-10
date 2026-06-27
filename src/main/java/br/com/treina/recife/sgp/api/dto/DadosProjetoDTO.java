@@ -17,20 +17,17 @@ public record DadosProjetoDTO(
     @NotNull StatusProjeto status,
     @NotNull Long responsavelId
 ) {
-    public Projeto toModel(UsuarioRepository usuarioRepository) {
+    public Projeto toModel(Usuario usuario) {
 
-        Usuario usuario = usuarioRepository.findById(responsavelId)
-            .orElseThrow(() -> new RuntimeException("Usuário responsável não encontrado"));
+    Projeto projeto = new Projeto();
 
-        Projeto projeto = new Projeto();
+    projeto.setNome(nome);
+    projeto.setDescricao(descricao);
+    projeto.setDataInicio(dataInicio);
+    projeto.setDataConclusao(dataConclusao);
+    projeto.setStatus(status);
+    projeto.setResponsavel(usuario);
 
-        projeto.setNome(nome);
-        projeto.setDescricao(descricao);
-        projeto.setDataInicio(dataInicio);
-        projeto.setDataConclusao(dataConclusao);
-        projeto.setStatus(status);
-        projeto.setResponsavel(usuario);
-
-        return projeto;
-    }
+    return projeto;
+}
 }

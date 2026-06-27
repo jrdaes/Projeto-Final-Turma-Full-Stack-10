@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ErroRespostaDTO {
-    
+
     private LocalDateTime timestamp;
     private Integer status;
     private String erro;

@@ -1,20 +1,12 @@
 package br.com.treina.recife.sgp.api.controller;
 
 import java.util.List;
-import java.util.Optional;
 
+import org.jspecify.annotations.Nullable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import br.com.treina.recife.sgp.api.dto.DadosTarefaDTO;
 import br.com.treina.recife.sgp.api.model.Tarefa;
@@ -29,51 +21,38 @@ public class TarefaController {
     @Autowired
     private TarefaService tarefaService;
 
+    // CREATE
     @PostMapping
-    public ResponseEntity<Tarefa> cadastrar(@Valid @RequestBody DadosTarefaDTO tarefa) {
+    public ResponseEntity<Tarefa> cadastrar(@Valid @RequestBody DadosTarefaDTO dto) {
         return ResponseEntity.status(HttpStatus.CREATED)
-                        .body(tarefaService.cadastrarTarefa(tarefa));
+                .body(tarefaService.cadastrarTarefa(dto));
     }
-    
+
+    // UPDATE
     @PutMapping("/{id}")
-    public ResponseEntity<Tarefa> atualizar(@PathVariable Long id, @Valid @RequestBody DadosTarefaDTO dados) {
-        Optional<Tarefa> tarefa = tarefaService.obterDadosDaTarefa(id);
+    public ResponseEntity<Tarefa> atualizar(
+            @PathVariable Long id,
+            @RequestBody DadosTarefaDTO dto) {
 
-        if (tarefa.isEmpty()) {
-            return ResponseEntity.notFound().build();
-        }
-
-        return ResponseEntity.ok(tarefaService.atualizarTarefa(id, dados));
+        return ResponseEntity.ok(tarefaService.atualizarTarefa(id, dto));
     }
 
+    // LIST
     @GetMapping
     public ResponseEntity<List<Tarefa>> listar() {
         return ResponseEntity.ok(tarefaService.listarTarefas());
     }
 
+    // GET BY ID
     @GetMapping("/{id}")
-    public ResponseEntity<Tarefa> obterDadosPeloId(@PathVariable Long id) {
-        Optional<Tarefa> tarefa = tarefaService.obterDadosDaTarefa(id);
-
-        if (tarefa.isEmpty()) {
-            return ResponseEntity.notFound().build();
-        }
-
-        return ResponseEntity.ok(tarefa.get());
+    public ResponseEntity<@Nullable Object> buscarPorId(@PathVariable Long id) {
+        return ResponseEntity.ok(tarefaService.buscarPorId(id));
     }
 
+    // DELETE
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> excluir(@PathVariable Long id) {
-        Optional<Tarefa> tarefa = tarefaService.obterDadosDaTarefa(id);
-
-        if (tarefa.isEmpty()) {
-            return ResponseEntity.notFound().build();
-        }
-
         tarefaService.excluirTarefa(id);
-
         return ResponseEntity.noContent().build();
     }
-
-    
 }

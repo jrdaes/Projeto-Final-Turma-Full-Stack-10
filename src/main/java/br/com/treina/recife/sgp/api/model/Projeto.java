@@ -21,7 +21,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Entity(name = "TB_PROJETOS")
 public class Projeto {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -36,7 +36,6 @@ public class Projeto {
 
     @Enumerated(EnumType.STRING)
     private StatusProjeto status;
-
 
     @ManyToOne
     @JoinColumn(name = "usuario_resp_id")

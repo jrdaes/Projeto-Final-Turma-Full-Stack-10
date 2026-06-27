@@ -11,21 +11,15 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
 public record DadosTarefaDTO(
-    @NotBlank
-    String titulo,
-    String descricao,
-    @NotNull
-    LocalDate dataCriacao,
-    LocalDate dataConclusao,
-    @NotNull
-    PrioridadeTarefa prioridade,
-    @NotNull
-    StatusTarefa status,
-    Long usuarioId,
-    @NotNull
-    Long projetoId
-) {
-    
+        @NotBlank String titulo,
+        String descricao,
+        @NotNull LocalDate dataCriacao,
+        LocalDate dataConclusao,
+        @NotNull PrioridadeTarefa prioridade,
+        @NotNull StatusTarefa status,
+        Long usuarioId,
+        @NotNull Long projetoId) {
+
     public Tarefa toModel() {
         Tarefa tarefa = new Tarefa();
 
@@ -43,7 +37,7 @@ public record DadosTarefaDTO(
         Projeto projeto = new Projeto();
         projeto.setId(projetoId);
         tarefa.setProjeto(projeto);
-        
+
         return tarefa;
     }
 

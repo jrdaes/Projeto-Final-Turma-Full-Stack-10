@@ -21,11 +21,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Entity(name = "TB_USUARIOS")
 public class Usuario {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long 
-    id;    // BIGINT PRIMARY KEY AUTO_INCREMENT
+    private Long id; // BIGINT PRIMARY KEY AUTO_INCREMENT
 
     // VARCHAR(50) NOT NULL
     @Column(nullable = false, length = 50)
@@ -58,14 +57,13 @@ public class Usuario {
         String cpfFormatado = cpf.substring(0, 3) + ".***.***-**";
 
         return new UsuarioDTO(
-            id,
-            nome,
-            email,
-            cpfFormatado,
-            dataNascimento,
-            periodo.getYears(),
-            status
-        );
+                id,
+                nome,
+                email,
+                cpfFormatado,
+                dataNascimento,
+                periodo.getYears(),
+                status);
     }
 
 }
